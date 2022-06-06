@@ -1,0 +1,382 @@
+// Import stylesheets
+import "./style.css";
+
+// Write Javascript code!
+const appDiv = document.getElementById("app");
+appDiv.innerHTML = `<h1>JS Starter</h1>`;
+
+const acctData = [
+  {
+    acctNum: "AAA - 1234",
+    user: "Alice"
+  },
+  {
+    acctNum: "AAA - 5231",
+    user: "Bob"
+  },
+  {
+    acctNum: "AAA - 9921",
+    user: "Alice"
+  },
+  {
+    acctNum: "AAA - 8191",
+    user: "Alice"
+  }
+];
+
+const balance = {
+  "AAA - 1234": 4593.22,
+  "AAA - 9921": 0,
+  "AAA - 5231": 232142.5,
+  "AAA - 8191": 4344
+};
+
+const asec = (a, b) => {
+  return a - b;
+};
+
+const dsec = (a, b) => {
+  return b - a;
+};
+
+const asecString = (a, b) => {
+  return a.acctNum.localeCompare(b.acctNum);
+};
+
+const dsecString = (a, b) => {
+  return b.acctNum.localeCompare(a.acctNum);
+};
+
+const asecBalance = (a, b) => {
+  return balance[a.acctNum] - balance[b.acctNum];
+};
+
+const dsecBalance = (a, b) => {
+  return balance[b.acctNum] - balance[a.acctNum];
+};
+
+const filterAndSort = (user, sortBy, sortDirection) => {
+  let sortFunction;
+  let testData = [];
+  if (user) {
+    testData = acctData.filter(acc => acc.user == user);
+  } else {
+    testData = acctData;
+  }
+  if (sortBy == "acctNum") {
+    sortFunction = sortDirection == "dsec" ? dsecString : asecString;
+  } else if (sortBy == "balance") {
+    sortFunction = sortDirection == "dsec" ? dsecBalance : asecBalance;
+  } else {
+    sortFunction = sortDirection == "dsec" ? dsec : asec;
+  }
+  return testData.sort(sortFunction).map(acc => acc.acctNum);
+};
+
+console.log(JSON.stringify(filterAndSort("Bob")));
+console.log(JSON.stringify(filterAndSort("Charlie")));
+console.log(JSON.stringify(filterAndSort("", "acctNum")));
+console.log(JSON.stringify(filterAndSort("", "acctNum", "dsec")));
+console.log(JSON.stringify(filterAndSort("Alice", "balance")));
+console.log(JSON.stringify(filterAndSort("Alice", "balance", "dsec")));
+
+
+
+===========================================================
+
+// Import stylesheets
+import "./style.css";
+
+// Write Javascript code!
+const appDiv = document.getElementById("app");
+appDiv.innerHTML = `<h1>JS Starter</h1>`;
+
+const acctData = [
+  {
+    acctNum: "AAA - 1234",
+    user: "Alice"
+  },
+  {
+    acctNum: "AAA - 5231",
+    user: "Bob"
+  },
+  {
+    acctNum: "AAA - 9921",
+    user: "Alice"
+  },
+  {
+    acctNum: "AAA - 8191",
+    user: "Alice"
+  }
+];
+
+const balance = {
+  "AAA - 1234": 4593.22,
+  "AAA - 9921": 0,
+  "AAA - 5231": 232142.5,
+  "AAA - 8191": 4344
+};
+
+const asec = (a, b) => {
+  return a - b;
+};
+
+const dsec = (a, b) => {
+  return b - a;
+};
+
+const asecString = (a, b) => {
+  return a.acctNum.localeCompare(b.acctNum);
+};
+
+const dsecString = (a, b) => {
+  return b.acctNum.localeCompare(a.acctNum);
+};
+
+const asecBalance = (a, b) => {
+  return balance[a.acctNum] - balance[b.acctNum];
+};
+
+const dsecBalance = (a, b) => {
+  return balance[b.acctNum] - balance[a.acctNum];
+};
+
+const filterAndSort = (user, sortBy, sortDirection) => {
+  let sortFunction;
+  if (sortBy == "acctNum") {
+    sortFunction = sortDirection == "dsec" ? dsecString : asecString;
+    return acctData.sort(sortFunction).map(acc => acc.acctNum);
+  } else if (sortBy == "balance") {
+    sortFunction = sortDirection == "dsec" ? dsecBalance : asecBalance;
+    return acctData
+      .filter(acc => acc.user == user)
+      .sort(sortFunction)
+      .map(acc => acc.acctNum);
+  }
+  sortFunction = sortDirection == "dsec" ? dsec : asec;
+  return acctData
+    .filter(acc => acc.user == user)
+    .sort(sortFunction)
+    .map(acc => acc.acctNum);
+};
+
+console.log(JSON.stringify(filterAndSort("Bob")));
+console.log(JSON.stringify(filterAndSort("Charlie")));
+console.log(JSON.stringify(filterAndSort("", "acctNum")));
+console.log(JSON.stringify(filterAndSort("", "acctNum", "dsec")));
+console.log(JSON.stringify(filterAndSort("Alice", "balance")));
+console.log(JSON.stringify(filterAndSort("Alice", "balance", "dsec")));
+
+
+================================
+
+algorithm and js
+
+var student_name = ["X", "B", "Z", "d", "k"]
+var student_marks = [95,98,92,94,100]
+
+let N1 = student_name
+let M1 = []
+
+N1 = N1.sort();
+
+N1.forEach((x,i)=> {
+	console.log('x=>', x)
+	student_name.forEach((y,j)=> {
+		console.log('y=>', y)
+		if(x == y) {
+			M1.push(student_marks[j]);
+		}
+	})
+})
+
+
+student_marks = M1 ;
+student_name = N1;
+
+ ======
+x -> 95
+B -> 98
+
+===
+
+B -> 98
+X -> 95
+
+N1
+(5) ["B", "X", "Z", "d", "k]
+	[98, 95, 92, 94, 100]
+
+student_name
+(5) ["X", "B", "Z", "d", "k"]
+
+student_marks
+(5) [95, 98, 92, 94, 100]
+
+
+===========================================
+
+
+var API_array = ["a.json", "b.json", "x.json", "z.json"]
+        // write a logic that will call one api at a time
+
+callApi(x) {
+this.htttp.get<>(x);
+}
+
+API_array.forEach(x => {
+  this.callApi(x);
+})
+
+new Promoisre(callAPi()).then().then().then
+
+
+===================================
+
+$(".btn.load-more").click(function() {
+$(".btn.grid-coupon-btn.btn-default").click();
+});
+
+$(".btn.grid-coupon-btn.btn-default").click()
+
+
+$(".btn.load-more").click()
+
+=======================================
+
+
+import { Component } from '@angular/core';
+
+
+@Component({
+  selector: 'like-dislike',
+  template: `
+      <div>
+        <button [ngClass]="{'liked': likeButtonClicked}" class="like-button" (click)="likeMe()">Like | <span class="likes-counter">{{likesCounter}}</span> </button> <button [ngClass]="{'disliked': disLikeButtonClicked}" class="dislike-button" (click)="disLikeMe()">Dislike | <span class="dislikes-counter">{{disLikesCounter}}</span></button>
+      </div>
+  `,
+  styles: [`
+    .like-button, .dislike-button {
+        font-size: 1rem;
+        padding: 5px 10px;
+        color:   #585858;
+    }
+
+    .liked, .disliked {
+        font-weight: bold;
+        color: #1565c0;
+    }
+  `]
+})
+
+export class LikeDislikeComponent {
+    likesCounter = 100;
+    disLikesCounter = 25;
+    likeButtonClicked = false;
+    disLikeButtonClicked = false;
+
+    likeMe() {
+        if (this.likeButtonClicked) {
+            this.likesCounter--;
+            this.likeButtonClicked = false;
+        } else {
+            this.likeButtonClicked = true;
+            this.likesCounter++;
+        }
+        if(this.disLikeButtonClicked) {
+            this.disLikesCounter--;
+            this.disLikeButtonClicked = false;
+        }
+    }
+
+    disLikeMe() {
+        if (this.disLikeButtonClicked) {
+            this.disLikesCounter--;
+            this.disLikeButtonClicked = false;
+        } else {
+            this.disLikeButtonClicked = true;
+            this.disLikesCounter++;
+        }
+        if (this.likeButtonClicked) {
+            this.likesCounter--;
+            this.likeButtonClicked = false;
+        }
+    }
+}
+
+
+===================================
+
+/*
+The Promise.all() method takes an iterable of promises as an input, and returns a single Promise that resolves to an array of the results of the input promises.
+
+Please write a function called all(), which should work the same as Promise.all()
+Do not use Promise.all() directly.
+*/
+
+/**
+ * @param {Array<Promise>} promises
+ * @return {Promise<any[]>}
+ */
+
+
+const all = (promises) => {
+  const a = [];
+  console.log("Entered code");  // your code here
+  
+  
+  return new Promise((resolve, reject) => {
+    promises.forEach((promise) => {
+     promise.then(data => {
+        a.push(data)
+        if (a.length === promises.length) {
+            resolve(a)
+        }
+      }).catch(err => reject(err)); 
+    });
+  });
+}
+
+
+
+/* Uncomment the following to test your code */
+
+const createPromise = (result) =>
+  new Promise((resolve, reject) => setTimeout(() => resolve(result), Math.random() * 100));
+
+
+const createRejection = (rejectMsg) =>
+  new Promise((resolve, reject) => setTimeout(() => reject(rejectMsg), Math.random() * 100));
+
+
+/*
+all([])
+  .then((res) => console.log("result: ", res, ", expected: []"))
+  .catch(console.log);
+*/
+
+
+all([
+  createPromise(1), 
+  createPromise(2), 
+  createPromise(3), 
+  createPromise(4)
+])
+  .then((res) => console.log("result: ", res, ", expected: [ 1, 2, 3, 4 ]"))
+  .catch(console.log);
+
+all([
+  createPromise(1),
+  createPromise(2),
+  createPromise(3),
+  createRejection("rejected"),
+])
+  .then(console.log)
+  .catch((err) => console.log("result: ", err, ", expected: rejected"));
+
+
+
+==================================
+
+
+
